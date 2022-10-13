@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import { StrictMode, useState } from 'react';
 import reactLogo from '../../../assets/react.svg';
 import './App.css';
@@ -18,7 +19,9 @@ export function App() {
         </div>
         <h1>Vite + React</h1>
         <div className="card">
-          <button onClick={() => setCount(count + 1)}>count is {count}</button>
+          <Button variant="contained" onClick={() => setCount(count + 1)}>
+            count is {count}
+          </Button>
           <p>
             Edit <code>src/App.tsx</code> and save to test HMR
           </p>
