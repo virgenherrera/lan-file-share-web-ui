@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { format } from 'date-fns';
 import { FolderInfo } from '../../api/models';
 import { FolderContentGrid } from './folder-content-grid.component';
 
@@ -39,16 +40,24 @@ describe(`UT: <${FolderContentGrid.name} />`, () => {
 
     for await (const folder of folderInfo.folders) {
       const folderElement = screen.getByText(folder);
-      // const aElement = folderElement.closest('a');
 
       expect(folderElement).toBeInTheDocument();
-      // expect(aElement).toBeInTheDocument();
     }
 
     for await (const file of folderInfo.files) {
       const fileElement = screen.getByText(file.fileName);
+      const sizeElement = screen.getByText(file.size);
+      const createdAtElement = screen.getByText(
+        `${format(file.createdAt, 'yyyy/MM/dd')}`,
+      );
+      const updatedAtElement = screen.getByText(
+        `${format(file.createdAt, 'yyyy/MM/dd')}`,
+      );
 
       expect(fileElement).toBeInTheDocument();
+      expect(sizeElement).toBeInTheDocument();
+      expect(createdAtElement).toBeInTheDocument();
+      expect(updatedAtElement).toBeInTheDocument();
     }
   });
 });

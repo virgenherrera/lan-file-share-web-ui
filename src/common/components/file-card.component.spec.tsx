@@ -19,7 +19,7 @@ describe(`UT: <${FileCard.name} />`, () => {
     render(<FileCard {...fileCardProps} />);
 
     const fileNameElement = screen.getByText(fileCardProps.fileName);
-    const aElement = screen.getByText('', { selector: 'a' });
+    const aElement = screen.getByRole('link');
     const sizeElement = screen.getByText(fileCardProps.size);
     const createdAtElement = screen.getByText(
       `${format(fileCardProps.createdAt, 'yyyy/MM/dd')}`,

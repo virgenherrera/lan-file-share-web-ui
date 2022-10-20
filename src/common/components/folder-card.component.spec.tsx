@@ -12,10 +12,10 @@ describe(`UT: <${FolderCard.name} />`, () => {
     render(<FolderCard name={expectedName} />);
 
     const folderNameElement = screen.getByText(expectedName);
-    // const aElement = folderNameElement.closest('a');
+    const aElement = screen.getByRole('link');
 
     expect(folderNameElement).toBeInTheDocument();
-    // expect(aElement).toBeInTheDocument();
-    // expect(aElement).toHaveProperty('href', `/${expectedName}`);
+    expect(aElement).toBeInTheDocument();
+    expect(aElement).toHaveProperty('href');
   });
 });

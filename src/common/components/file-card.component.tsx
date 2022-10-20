@@ -43,7 +43,7 @@ export function FileCard({
       </>
     ),
     action: (
-      <Link href={href} target="_blank">
+      <Link role="link" href={href} target="_blank">
         <FileDownloadIcon />
       </Link>
     ),

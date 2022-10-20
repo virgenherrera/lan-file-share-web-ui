@@ -17,7 +17,7 @@ export function FolderCard({ name }: FolderComponentProps) {
   const cardProps: CardProps = { elevation: 3, sx: { height: 'fit-content' } };
   const cardHeaderProps: CardHeaderProps = {
     title: (
-      <Link href={`/${name}`}>
+      <Link role="link" href={`/${name}`}>
         <FolderIcon />
       </Link>
     ),
