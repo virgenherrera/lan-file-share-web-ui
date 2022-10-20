@@ -6,16 +6,14 @@ import {
   CardProps,
   Link,
 } from '@mui/material';
-import { format } from 'date-fns';
 
 export interface FolderComponentProps {
   name: string;
   path: string;
-  updatedAt?: Date;
 }
 
-export function FolderCard({ name, path, updatedAt }: FolderComponentProps) {
-  const cardProps: CardProps = { elevation: 3, sx: { height: '5rem' } };
+export function FolderCard({ name, path }: FolderComponentProps) {
+  const cardProps: CardProps = { elevation: 3, sx: { height: 'fit-content' } };
   const cardHeaderProps: CardHeaderProps = {
     title: (
       <Link href={path}>
@@ -23,9 +21,6 @@ export function FolderCard({ name, path, updatedAt }: FolderComponentProps) {
       </Link>
     ),
   };
-
-  if (updatedAt)
-    cardHeaderProps.subheader = `updatedAt: ${format(updatedAt, 'yyyy/MM/dd')}`;
 
   return (
     <Card {...cardProps}>
