@@ -1,6 +1,8 @@
 import { Folder as FolderIcon } from '@mui/icons-material';
 import {
   Card,
+  CardContent,
+  CardContentProps,
   CardHeader,
   CardHeaderProps,
   CardProps,
@@ -9,22 +11,24 @@ import {
 
 export interface FolderComponentProps {
   name: string;
-  path: string;
 }
 
-export function FolderCard({ name, path }: FolderComponentProps) {
+export function FolderCard({ name }: FolderComponentProps) {
   const cardProps: CardProps = { elevation: 3, sx: { height: 'fit-content' } };
   const cardHeaderProps: CardHeaderProps = {
     title: (
-      <Link href={path}>
-        <FolderIcon /> {name}
+      <Link href={`/${name}`}>
+        <FolderIcon />
       </Link>
     ),
+    sx: { 'padding-top': '0.5rem', 'padding-bottom': 0 },
   };
+  const cardContentProps: CardContentProps = { sx: { 'padding-top': 0 } };
 
   return (
     <Card {...cardProps}>
       <CardHeader {...cardHeaderProps} />
+      <CardContent {...cardContentProps}>{name}</CardContent>
     </Card>
   );
 }

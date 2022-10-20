@@ -7,10 +7,10 @@ describe(`UT: <${FolderCard.name} />`, () => {
   }
 
   it(should.showFolderName, () => {
-    const expectedName = 'Foo-bar';
-    const expectedPath = '/Foo-bar';
+    const expectedName = 'foo-bar';
+    const expectedPath = `/${expectedName}`;
 
-    render(<FolderCard name={expectedName} path={expectedPath} />);
+    render(<FolderCard name={expectedName} />);
 
     const aElement = screen.getByText(expectedName).closest('a');
 
