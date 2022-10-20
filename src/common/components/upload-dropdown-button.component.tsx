@@ -25,7 +25,6 @@ export function UploadDropdownButton() {
 
     setMenuOpen(false);
   };
-
   const closeMenu = (event: Event) => {
     if (
       anchorRef.current &&
@@ -66,19 +65,18 @@ export function UploadDropdownButton() {
         transition
         disablePortal
       >
-        {({ TransitionProps, placement }) => (
+        {({ TransitionProps }) => (
           <Grow
             {...TransitionProps}
             style={{
-              transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom',
+              transformOrigin: 'center bottom',
             }}
           >
             <Paper>
               <ClickAwayListener onClickAway={closeMenu}>
                 <MenuList id="split-button-menu" autoFocusItem>
-                  <MenuItem onClick={uploadFile}>Upload a file</MenuItem>
-                  <MenuItem onClick={uploadFiles}>Upload many files</MenuItem>
+                  <MenuItem onClick={uploadFile}>a file</MenuItem>
+                  <MenuItem onClick={uploadFiles}>many files</MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>
