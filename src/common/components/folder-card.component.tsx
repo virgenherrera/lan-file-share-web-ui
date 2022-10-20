@@ -21,9 +21,9 @@ export function FolderCard({ name }: FolderComponentProps) {
         <FolderIcon />
       </Link>
     ),
-    sx: { 'padding-top': '0.5rem', 'padding-bottom': 0 },
+    sx: { paddingTop: '0.5rem', paddingBottom: 0 },
   };
-  const cardContentProps: CardContentProps = { sx: { 'padding-top': 0 } };
+  const cardContentProps: CardContentProps = { sx: { paddingTop: 0 } };
 
   return (
     <Card {...cardProps}>
