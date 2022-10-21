@@ -16,12 +16,12 @@ export function UploadDropdownButton() {
   const anchorRef = useRef<HTMLDivElement>(null);
   const toggleOpen = () => setMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
   const uploadFile = () => {
-    console.log('Upload a file!');
+    // call to external dispatch!
 
     setMenuOpen(false);
   };
   const uploadFiles = () => {
-    console.log('Upload a bunch of files!');
+    // call to external dispatch!
 
     setMenuOpen(false);
   };

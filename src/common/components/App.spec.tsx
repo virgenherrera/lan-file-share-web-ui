@@ -3,14 +3,16 @@ import { App } from './App';
 
 describe(`UT: <${App.name} />`, () => {
   const enum should {
-    haveDefaultBreadcrumb = 'Should contain Home as default breadcrumb.',
+    haveDefaultBreadcrumb = 'Should contain text as header and "Home" as default breadcrumb.',
   }
 
   it(should.haveDefaultBreadcrumb, async () => {
-    const expectedTitle = 'Home';
-    const { getByText } = render(<App />);
+    const expectedHeader = 'Lan File Share';
+    const expectedPath = 'Home';
 
-    expect(getByText(expectedTitle)).toBeTruthy();
-    expect(screen.getByText(expectedTitle)).toBeTruthy();
+    render(<App />);
+
+    expect(screen.getByText(expectedPath)).toBeInTheDocument();
+    expect(screen.getByText(expectedHeader)).toBeInTheDocument();
   });
 });

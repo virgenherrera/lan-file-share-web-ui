@@ -9,7 +9,7 @@ describe(`UT: <${PathCrumbs.name} />`, () => {
 
   it(should.showDefaultHome, () => {
     const expectedPath = 'Home';
-    const { getByText } = render(<PathCrumbs />);
+    const { getByText } = render(<PathCrumbs path="" />);
 
     expect(getByText(expectedPath)).toBeTruthy();
   });

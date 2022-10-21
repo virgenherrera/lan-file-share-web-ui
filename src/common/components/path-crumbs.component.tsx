@@ -2,7 +2,7 @@ import { NavigateNext as NavigateNextIcon } from '@mui/icons-material';
 import { Breadcrumbs, Link, Typography } from '@mui/material';
 
 export interface BreadCrumbsProps {
-  path?: string;
+  path: string;
 }
 
 export function PathCrumbs({ path }: BreadCrumbsProps) {
