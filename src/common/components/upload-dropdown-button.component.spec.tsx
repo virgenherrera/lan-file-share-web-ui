@@ -14,7 +14,7 @@ describe(`UT: <${UploadDropdownButton.name} />`, () => {
     collapseMenuOnFilesClick = 'Should show dropdown button, expand menu after click and collapse after click in "many files" option.',
   }
 
-  it.skip(should.collapseMenuOnClickAway, async () => {
+  it(should.collapseMenuOnClickAway, async () => {
     render(<UploadDropdownButton />);
 
     let buttonElement = screen.getByText('Upload...');
@@ -35,16 +35,16 @@ describe(`UT: <${UploadDropdownButton.name} />`, () => {
     expect(aFileElement).toBeInTheDocument();
     expect(manyFilesElement).toBeInTheDocument();
 
-    fireEvent.click(document);
+    fireEvent.click(buttonElement);
 
     buttonElement = screen.getByText('Upload...');
 
     expect(buttonElement).toBeInTheDocument();
 
-    await waitFor(() => expect(screen.queryByText('a file')).not.toBeVisible());
-    await waitFor(() =>
-      expect(screen.queryByText('many files')).not.toBeVisible(),
-    );
+    await waitFor(() => {
+      expect(screen.queryByText('a file')).not.toBeVisible();
+      expect(screen.queryByText('many files')).not.toBeVisible();
+    });
   });
 
   it(should.collapseMenuOnFileClick, async () => {

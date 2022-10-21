@@ -3,6 +3,7 @@ import { useMediaQuery, useTheme } from '@mui/material';
 import { FolderInfo } from '../../api/models';
 import { FileCard } from './file-card.component';
 import { FolderCard } from './folder-card.component';
+
 export function FolderContentGrid({ files, folders }: FolderInfo) {
   const folderElements = folders.map((folder, idx) => (
     <FolderCard key={`folder-${idx}`} name={folder} />

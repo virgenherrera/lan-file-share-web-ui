@@ -2,9 +2,7 @@ import { Lan as LanIcon } from '@mui/icons-material';
 import { AppBar, Container, Toolbar, Typography } from '@mui/material';
 import { UploadDropdownButton } from './upload-dropdown-button.component';
 
-export default function Header() {
-  const logoTitle = 'Lan File Share';
-
+export function Header() {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -25,7 +23,7 @@ export default function Header() {
               textDecoration: 'none',
             }}
           >
-            {logoTitle}
+            Lan File Share
           </Typography>
 
           <LanIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -45,7 +43,7 @@ export default function Header() {
               textDecoration: 'none',
             }}
           >
-            {logoTitle}
+            LFS
           </Typography>
           <UploadDropdownButton />
         </Toolbar>
