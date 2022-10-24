@@ -10,13 +10,21 @@ import {
   Popper,
 } from '@mui/material';
 import { Fragment, useRef, useState } from 'react';
+import { FileUploadModalProps } from './file-upload-modal.component';
 
-export function UploadDropdownButton() {
+export type UploadDropdownButtonProps = Pick<
+  FileUploadModalProps,
+  'setFileUploadModal'
+>;
+
+export function UploadDropdownButton({
+  setFileUploadModal,
+}: UploadDropdownButtonProps) {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const anchorRef = useRef<HTMLDivElement>(null);
   const toggleOpen = () => setMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
   const uploadFile = () => {
-    // call to external dispatch!
+    setFileUploadModal(true);
 
     setMenuOpen(false);
   };
