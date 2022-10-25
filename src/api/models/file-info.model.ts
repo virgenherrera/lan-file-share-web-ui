@@ -1,4 +1,4 @@
-import { SharedFolderRoute } from '../enums/endpoint.enum';
+import { SharedFolderRoute } from '../enums';
 
 export type FileInfoArgs = Pick<
   FileInfo,
