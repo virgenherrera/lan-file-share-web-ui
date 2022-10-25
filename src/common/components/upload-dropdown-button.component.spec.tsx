@@ -117,7 +117,7 @@ describe(`UT: <${UploadDropdownButton.name} />`, () => {
     expect(buttonElement).toBeInTheDocument();
     expect(aFileElement).not.toBeInTheDocument();
     expect(manyFilesElement).not.toBeInTheDocument();
-    expect(aFileModal).toBeInTheDocument();
-    expect(manyFilesModal).not.toBeInTheDocument();
+    expect(aFileModal).not.toBeInTheDocument();
+    expect(manyFilesModal).toBeInTheDocument();
   });
 });

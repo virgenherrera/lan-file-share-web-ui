@@ -65,7 +65,11 @@ export function FileUploadModal({
           </Box>
 
           <Box sx={modalStyle.actions}>
-            <Button variant="outlined" sx={{ marginX: '0.5rem' }}>
+            <Button
+              variant="outlined"
+              sx={{ marginX: '0.5rem' }}
+              onClick={handleClose}
+            >
               Back
             </Button>
             <Button variant="contained" disabled>
