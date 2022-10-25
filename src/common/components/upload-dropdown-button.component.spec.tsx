@@ -74,10 +74,14 @@ describe(`UT: <${UploadDropdownButton.name} />`, () => {
     buttonElement = screen.getByText('Upload...');
     aFileElement = screen.queryByText('a file');
     manyFilesElement = screen.queryByText('many files');
+    const aFileModal = screen.queryByText('Select a file to Upload.');
+    const manyFilesModal = screen.queryByText('Select your files to Upload.');
 
     expect(buttonElement).toBeInTheDocument();
     expect(aFileElement).not.toBeInTheDocument();
     expect(manyFilesElement).not.toBeInTheDocument();
+    expect(aFileModal).toBeInTheDocument();
+    expect(manyFilesModal).not.toBeInTheDocument();
   });
 
   it(should.collapseMenuOnFilesClick, async () => {
@@ -107,9 +111,13 @@ describe(`UT: <${UploadDropdownButton.name} />`, () => {
     buttonElement = screen.getByText('Upload...');
     aFileElement = screen.queryByText('a file');
     manyFilesElement = screen.queryByText('many files');
+    const aFileModal = screen.queryByText('Select a file to Upload.');
+    const manyFilesModal = screen.queryByText('Select your files to Upload.');
 
     expect(buttonElement).toBeInTheDocument();
     expect(aFileElement).not.toBeInTheDocument();
     expect(manyFilesElement).not.toBeInTheDocument();
+    expect(aFileModal).toBeInTheDocument();
+    expect(manyFilesModal).not.toBeInTheDocument();
   });
 });

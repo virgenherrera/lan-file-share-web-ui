@@ -11,7 +11,7 @@ export const BaseConfig: Config.InitialOptions = {
     '**/*.(ts|tsx)',
     '!**/*.d.ts',
     '!**/(index|main).(ts|tsx)',
-    '!**/*.(bootstrap|enum|interface|mock|model).(ts|tsx)',
+    '!**/*.(bootstrap|constant|enum|interface|mock|model).(ts|tsx)',
     '!**/__mocks__.ts',
   ],
   coverageDirectory: '../coverage/unit',

@@ -1,11 +1,8 @@
 import { Lan as LanIcon } from '@mui/icons-material';
 import { AppBar, Container, Toolbar, Typography } from '@mui/material';
-import { FileUploadModalProps } from './file-upload-modal.component';
 import { UploadDropdownButton } from './upload-dropdown-button.component';
 
-export type HeaderProps = Pick<FileUploadModalProps, 'setFileUploadModal'>;
-
-export function Header(props: HeaderProps) {
+export function Header() {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -48,7 +45,7 @@ export function Header(props: HeaderProps) {
           >
             LFS
           </Typography>
-          <UploadDropdownButton {...props} />
+          <UploadDropdownButton />
         </Toolbar>
       </Container>
     </AppBar>

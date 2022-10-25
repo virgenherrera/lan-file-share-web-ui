@@ -10,27 +10,23 @@ import {
   Popper,
 } from '@mui/material';
 import { Fragment, useRef, useState } from 'react';
-import { FileUploadModalProps } from './file-upload-modal.component';
+import { FileUploadModal } from './file-upload-modal.component';
+import { FilesUploadModal } from './files-upload-modal.component';
 
-export type UploadDropdownButtonProps = Pick<
-  FileUploadModalProps,
-  'setFileUploadModal'
->;
-
-export function UploadDropdownButton({
-  setFileUploadModal,
-}: UploadDropdownButtonProps) {
+export function UploadDropdownButton() {
+  const [isFileUploadModalOpen, setFileUploadModal] = useState(false);
+  const [isFilesUploadModalOpen, setFilesUploadModal] = useState(false);
+  const fileModalProps = { isFileUploadModalOpen, setFileUploadModal };
+  const filesModalProps = { isFilesUploadModalOpen, setFilesUploadModal };
   const [isMenuOpen, setMenuOpen] = useState(false);
   const anchorRef = useRef<HTMLDivElement>(null);
   const toggleOpen = () => setMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
   const uploadFile = () => {
     setFileUploadModal(true);
-
     setMenuOpen(false);
   };
   const uploadFiles = () => {
-    // call to external dispatch!
-
+    setFilesUploadModal(true);
     setMenuOpen(false);
   };
   const closeMenu = (event: Event) => {
@@ -91,6 +87,9 @@ export function UploadDropdownButton({
           </Grow>
         )}
       </Popper>
+
+      {isFileUploadModalOpen && <FileUploadModal {...fileModalProps} />}
+      {isFilesUploadModalOpen && <FilesUploadModal {...filesModalProps} />}
     </Fragment>
   );
 }
