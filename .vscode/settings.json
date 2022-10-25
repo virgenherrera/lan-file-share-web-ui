@@ -2,6 +2,7 @@
   "codemetrics.basics.CodeLensHiddenUnder": 7,
   "codemetrics.basics.EnabledForHTML": false,
   "codemetrics.basics.MetricsForClassDeclarationsToggled": false,
+  "codemetrics.basics.EnabledForTSX": false,
   "editor.codeActionsOnSave": {
     "source.organizeImports": true,
     "source.fixAll.eslint": true
@@ -25,6 +26,7 @@
   "typescript.referencesCodeLens.enabled": true,
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
