@@ -12,9 +12,7 @@ describe(`UT:${getSharedFolderUrl.name}()`, () => {
   });
 
   it(should.getFileStreamUrl, async () => {
-    expect(getSharedFolderUrl('sharedFolder')).toBe(
-      '/api/v1/shared-folder/file',
-    );
+    expect(getSharedFolderUrl('fileStream')).toBe('/api/v1/shared-folder/file');
   });
 
   it(should.getZipFileUrl, async () => {
