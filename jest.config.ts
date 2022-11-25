@@ -34,7 +34,7 @@ export const BaseConfig: Config.InitialOptions = {
   testEnvironment: 'jsdom',
   testRegex: '.spec.tsx?$',
   transform: { '^.+\\.tsx?$': 'ts-jest' },
-  verbose: false,
+  verbose: true,
 };
 
 export default BaseConfig;
