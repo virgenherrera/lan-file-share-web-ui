@@ -16,7 +16,7 @@ export function FolderContentGrid({ path }: FolderContentGridProps) {
   return !folderInfo ? (
     <Loading />
   ) : (
-    <Masonry columns={masonryColumns} spacing={2}>
+    <Masonry role="grid" columns={masonryColumns} spacing={2}>
       {folderInfo.folders.map((folder, idx) => (
         <FolderCard key={`folder-${idx}`} name={folder} />
       ))}
