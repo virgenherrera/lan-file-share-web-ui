@@ -1,6 +1,5 @@
-import { FolderInfo } from '../models';
+import { ApiException, FolderInfo } from '../models';
 import { getFolderInfoService } from './get-folder-info.service';
-import { mockFetchResponse } from './__mocks__';
 
 describe(`UT:${getFolderInfoService.name}()`, () => {
   const enum should {
@@ -8,12 +7,19 @@ describe(`UT:${getFolderInfoService.name}()`, () => {
     fetchFolderData = 'Should fetch base folder data properly and return an instance of FolderInfo model.',
   }
 
+  const mockFetchResponse: any = {
+    ok: false,
+    json: jest.fn(),
+  };
+
   afterAll(() => {
     jest.restoreAllMocks();
   });
 
   it(should.throwOnFailure, async () => {
-    await expect(getFolderInfoService('')).rejects.toBe(mockFetchResponse);
+    global.fetch = jest.fn().mockResolvedValue(mockFetchResponse);
+
+    await expect(getFolderInfoService('')).rejects.toBeInstanceOf(ApiException);
   });
 
   it(should.throwOnFailure, async () => {
