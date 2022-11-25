@@ -1,29 +1,28 @@
 import { Masonry } from '@mui/lab';
-import { useMediaQuery, useTheme } from '@mui/material';
-import { FolderInfo } from '../../api/models';
+import { useGetFolderInfo } from '../../api/hooks';
 import { FileCard } from './file-card.component';
 import { FolderCard } from './folder-card.component';
+import { Loading } from './loading.component';
 
-export function FolderContentGrid({ files, folders }: FolderInfo) {
-  const folderElements = folders.map((folder, idx) => (
-    <FolderCard key={`folder-${idx}`} name={folder} />
-  ));
-  const fileElements = files.map((file, idx) => (
-    <FileCard key={`file-${idx}`} {...file} />
-  ));
-  const theme = useTheme();
-  const isDownSm = useMediaQuery(theme.breakpoints.down('sm'));
-  const isBetweenSmAndMd = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-  const isUpMd = useMediaQuery(theme.breakpoints.up('md'));
-  let columns: number;
+export interface FolderContentGridProps {
+  path: string;
+}
 
-  if (isDownSm) columns = 1;
-  if (isBetweenSmAndMd) columns = 2;
-  if (isUpMd) columns = 4;
+const masonryColumns = { xs: 1, sm: 2, md: 4, lg: 4, xl: 6 };
 
-  return (
-    <Masonry columns={columns} spacing={2}>
-      {[...folderElements, ...fileElements]}
+export function FolderContentGrid({ path }: FolderContentGridProps) {
+  const folderInfo = useGetFolderInfo(path);
+
+  return !folderInfo ? (
+    <Loading />
+  ) : (
+    <Masonry role="grid" columns={masonryColumns} spacing={2}>
+      {folderInfo.folders.map((folder, idx) => (
+        <FolderCard key={`folder-${idx}`} name={folder} />
+      ))}
+      {folderInfo.files.map((file, idx) => (
+        <FileCard key={`file-${idx}`} {...file} />
+      ))}
     </Masonry>
   );
 }
