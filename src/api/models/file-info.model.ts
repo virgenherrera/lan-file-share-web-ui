@@ -1,9 +1,7 @@
+import { parseISO } from 'date-fns';
 import { SharedFolderRoute } from '../enums';
 
-export type FileInfoArgs = Pick<
-  FileInfo,
-  'fileName' | 'path' | 'size' | 'createdAt' | 'updatedAt'
->;
+export type FileInfoArgs = Record<keyof FileInfo, string>;
 
 export class FileInfo {
   fileName: string;
@@ -13,9 +11,20 @@ export class FileInfo {
   createdAt: Date;
   updatedAt: Date;
 
-  constructor({ fileName, path, size, createdAt, updatedAt }: FileInfoArgs) {
-    const href = `/api/v1${SharedFolderRoute.fileStream}?path=${path}`;
-
-    Object.assign(this, { fileName, href, path, size, createdAt, updatedAt });
+  constructor({
+    fileName,
+    path,
+    size,
+    createdAt,
+    updatedAt,
+  }: Record<keyof FileInfo, string>) {
+    Object.assign(this, {
+      fileName,
+      href: `/api/v1${SharedFolderRoute.fileStream}?path=${path}`,
+      path,
+      size,
+      createdAt: parseISO(createdAt),
+      updatedAt: parseISO(updatedAt),
+    });
   }
 }

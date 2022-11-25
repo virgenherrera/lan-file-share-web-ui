@@ -5,7 +5,7 @@ export class FolderInfo {
   folders: string[] = [];
 
   constructor(args: FolderInfo) {
-    this.files = args.files.map((file) => new FileInfo(file));
+    this.files = args.files.map((file: any) => new FileInfo(file));
     this.folders = args.folders;
   }
 }
