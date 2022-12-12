@@ -1,5 +1,7 @@
 import { render } from '@testing-library/react';
-import { PathCrumbs } from './path-crumbs.component';
+import { PathProvider } from '../../app/context';
+import { IPathContext } from '../../app/hooks';
+import { PathCrumbs, RootName } from './path-crumbs.component';
 
 describe(`UT: <${PathCrumbs.name} />`, () => {
   const enum should {
@@ -8,19 +10,33 @@ describe(`UT: <${PathCrumbs.name} />`, () => {
   }
 
   it(should.showDefaultHome, () => {
-    const expectedPath = 'Home';
-    const { getByText } = render(<PathCrumbs path="" />);
+    const pathCtx: IPathContext = {
+      path: '',
+      setPath: (value) => console.log(value),
+    };
+    const { getByText } = render(
+      <PathProvider value={pathCtx}>
+        <PathCrumbs />
+      </PathProvider>,
+    );
 
-    expect(getByText(expectedPath)).toBeTruthy();
+    expect(getByText(RootName)).toBeTruthy();
   });
 
   it(should.showPAthSegments, async () => {
-    const expectedSegments = ['foo', 'bar', 'baz', 'oof'];
-    const path = expectedSegments.join('/');
+    const pathCtx: IPathContext = {
+      path: 'foo/bar/baz/oof',
+      setPath: (value) => console.log(value),
+    };
+    const { getByText } = render(
+      <PathProvider value={pathCtx}>
+        <PathCrumbs />
+      </PathProvider>,
+    );
 
-    const { getByText } = render(<PathCrumbs path={path} />);
+    expect(getByText(RootName)).toBeTruthy();
 
-    for await (const segment of expectedSegments) {
+    for await (const segment of pathCtx.path.split('/')) {
       expect(getByText(segment)).toBeTruthy();
     }
   });

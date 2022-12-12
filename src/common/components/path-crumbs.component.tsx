@@ -1,36 +1,54 @@
 import { NavigateNext as NavigateNextIcon } from '@mui/icons-material';
 import { Breadcrumbs, Link, Typography } from '@mui/material';
+import { useContext } from 'react';
 
-export interface BreadCrumbsProps {
-  path: string;
+import { PathContext } from '../../app/context';
+
+function getLink(key: string, text: string, onClick: () => void) {
+  return (
+    <Link key={key} underline="hover" color="inherit" onClick={onClick}>
+      {text}
+    </Link>
+  );
 }
 
-export function PathCrumbs({ path }: BreadCrumbsProps) {
-  const pathSegments = !path ? ['Home'] : path.split('/');
-  const BreadcrumbsChildren = pathSegments.reduce((acc, segment, idx) => {
-    const isLastSegment = pathSegments.length - 1 === idx;
+function getTypography(key: string, text: string) {
+  return (
+    <Typography key={key} color="text.primary">
+      {text}
+    </Typography>
+  );
+}
 
-    if (isLastSegment) {
-      acc.push(
-        <Typography key={idx} color="text.primary">
-          {segment}
-        </Typography>,
-      );
-    } else {
-      acc.push(
-        <Link key={idx} underline="hover" color="inherit" href="#">
-          {segment}
-        </Link>,
-      );
-    }
+export const RootName = `<RootDir>`;
 
-    return acc;
-  }, []);
+export function PathCrumbs() {
+  const { path, setPath } = useContext(PathContext);
+  const handleClick = (nextPath: string) => () => setPath(nextPath);
+  const HomeComponent = !path
+    ? getTypography('default-home-string', RootName)
+    : getLink('default-home-link', RootName, handleClick(''));
+  const BreadcrumbsChildren = path.split('/').reduce(
+    (acc, segment, idx, pathSegments) => {
+      const isLastSegment = pathSegments.length - 1 === idx;
+
+      if (isLastSegment) {
+        acc.push(getTypography(`typography-${idx}`, segment));
+      } else {
+        const parentPath = pathSegments.slice(0, idx - 1).join('/');
+
+        acc.push(getLink(`link-${idx}`, segment, handleClick(parentPath)));
+      }
+
+      return acc;
+    },
+    [HomeComponent],
+  );
 
   return (
     <Breadcrumbs
       aria-label="breadcrumb"
-      separator={<NavigateNextIcon fontSize="small" />}
+      separator={<NavigateNextIcon fontSize="medium" />}
     >
       {BreadcrumbsChildren}
     </Breadcrumbs>

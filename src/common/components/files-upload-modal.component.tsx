@@ -3,7 +3,7 @@ import { Box, Button, Modal, Portal, Typography } from '@mui/material';
 import { Dispatch, SetStateAction } from 'react';
 import { modalStyle } from './file-upload-modal.component';
 
-export interface FileUploadModalProps {
+export interface FilesUploadModalProps {
   isFilesUploadModalOpen: boolean;
   setFilesUploadModal: Dispatch<SetStateAction<boolean>>;
 }
@@ -11,7 +11,7 @@ export interface FileUploadModalProps {
 export function FilesUploadModal({
   isFilesUploadModalOpen,
   setFilesUploadModal,
-}: FileUploadModalProps) {
+}: FilesUploadModalProps) {
   const handleClose = () => setFilesUploadModal(false);
 
   return (
