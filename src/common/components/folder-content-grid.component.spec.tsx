@@ -6,7 +6,6 @@ import { FolderContentGrid } from './folder-content-grid.component';
 
 describe(`UT: <${FolderContentGrid.name} />`, () => {
   const enum should {
-    initialState = 'Should render initial state.',
     renderProvidedFolderInfoProps = 'Should render properly all "FolderInfoProps".',
   }
 
@@ -41,20 +40,6 @@ describe(`UT: <${FolderContentGrid.name} />`, () => {
     jest.restoreAllMocks();
   });
 
-  it(should.initialState, async () => {
-    mockUseGetInfoModule.useGetFolderInfo = jest.fn().mockReturnValue(null);
-
-    const useGetFolderInfoSpy = jest.spyOn(
-      mockUseGetInfoModule,
-      'useGetFolderInfo',
-    );
-    const { queryByRole } = render(<FolderContentGrid path="" />);
-    const loaderElement = queryByRole('alert');
-
-    expect(useGetFolderInfoSpy).toHaveBeenCalled();
-    expect(loaderElement).toBeInTheDocument();
-  });
-
   it(should.renderProvidedFolderInfoProps, async () => {
     mockUseGetInfoModule.useGetFolderInfo = jest
       .fn()
@@ -64,7 +49,7 @@ describe(`UT: <${FolderContentGrid.name} />`, () => {
       mockUseGetInfoModule,
       'useGetFolderInfo',
     );
-    const { getByText, queryByRole } = render(<FolderContentGrid path="" />);
+    const { getByText, queryByRole } = render(<FolderContentGrid />);
 
     expect(useGetFolderInfoSpy).toHaveBeenCalled();
     await waitFor(() => expect(queryByRole('grid')).toBeInTheDocument());

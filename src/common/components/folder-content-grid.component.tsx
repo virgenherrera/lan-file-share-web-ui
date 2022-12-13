@@ -1,16 +1,15 @@
 import { Masonry } from '@mui/lab';
+import { useContext } from 'react';
+
 import { useGetFolderInfo } from '../../api/hooks';
+import { PathContext } from '../../app/context';
 import { FileCard } from './file-card.component';
 import { FolderCard } from './folder-card.component';
 import { Loading } from './loading.component';
-
-export interface FolderContentGridProps {
-  path: string;
-}
-
 const masonryColumns = { xs: 1, sm: 2, md: 4, lg: 4, xl: 6 };
 
-export function FolderContentGrid({ path }: FolderContentGridProps) {
+export function FolderContentGrid() {
+  const { path } = useContext(PathContext);
   const folderInfo = useGetFolderInfo(path);
 
   return !folderInfo ? (

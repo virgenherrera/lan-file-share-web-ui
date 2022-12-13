@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { RootName } from '../../common/components';
 import { App } from './app.component';
 
 describe(`UT: <${App.name} />`, () => {
@@ -8,11 +9,10 @@ describe(`UT: <${App.name} />`, () => {
 
   it(should.haveDefaultBreadcrumb, async () => {
     const expectedHeader = 'Lan File Share';
-    const expectedPath = 'Home';
 
     render(<App />);
 
-    expect(screen.getByText(expectedPath)).toBeInTheDocument();
+    expect(screen.getByText(RootName)).toBeInTheDocument();
     expect(screen.getByText(expectedHeader)).toBeInTheDocument();
   });
 });
